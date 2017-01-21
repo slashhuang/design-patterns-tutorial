@@ -1,10 +1,10 @@
 {
-  "name": "little-redux",
+  "name": "design-patterns-tutorial",
   "version": "1.0.0",
-  "description": "little redux",
-  "main": "./src/index.js",
+  "description": "design-patterns-tutorial",
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --progress --colors --port 8001"
+    "start": "webpack-dev-server --progress --colors --port 8001",
+    "tutorial": "webpack"
   },
   "keywords": [
     "redux",

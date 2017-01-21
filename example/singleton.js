@@ -1,43 +1,21 @@
 /**
- * Created by slashhuang on 16/3/8.
+ * Created by slashhuang on 17/1/21.
  */
 
-
-/*
- * action 类型
- */
-
-export const ADD_TODO = 'ADD_TODO';
-export const COMPLETE_TODO = 'COMPLETE_TODO';
-export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
-
-/*
- * 其它的常量
- */
-
-export const VisibilityFilters = {
-    SHOW_ALL: 'SHOW_ALL',
-    SHOW_COMPLETED: 'SHOW_COMPLETED',
-    SHOW_ACTIVE: 'SHOW_ACTIVE'
-};
-
-/*
- * action 创建函数
- */
-
-export function addTodo(text) {
-    return { type: ADD_TODO, text };
-}
-export function thunkTest(text) {
-    return function(dispatch){
-        dispatch(text)
+var singleton = ()=>{
+        var instance;
+        var createInstance = ()=>{
+            this.a = 1;
+            this.b = 2;
+        }// 单例模式方法入口
+        return {
+            getInstance:()=>{
+                if(!instance){
+                    instance = createInstance();
+                }
+                return instance;
+            }
+        }
     }
-}
-
-export function completeTodo(index) {
-    return { type: COMPLETE_TODO, index };
-}
-
-export function setVisibilityFilter(filter) {
-    return { type: SET_VISIBILITY_FILTER, filter };
-}
+var test = singleton();
+test.getInstance() == test.getInstance() //true

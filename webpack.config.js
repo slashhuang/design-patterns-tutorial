@@ -4,14 +4,17 @@
 
 var path =require('path');
 module.exports = {
+    context:path.resolve(process.cwd(),'example'),
     watch:true,
     entry: {
-        example:"./example/example.js",
-        test:['babel-polyfill',"./test.js"]
+        decorator:"./decorator.js",
+        observer:"./observer.js",
+        'pub-sub':'./pub-sub.js',
+         singleton:'./singleton.js',
+         mixin:'./mixin.js'
     },
     output: {
-        publicPath:'/dist/',
-        path: path.join(__dirname,'dist'),
+        path: './dist',
         filename: "[name].js"
     },
     module: {
@@ -24,7 +27,6 @@ module.exports = {
                 }
 
             },
-
         ],
         resolve: {
             extensions: ['', '.js', '.jsx']

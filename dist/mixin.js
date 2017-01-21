@@ -54,54 +54,32 @@
 	 * Created by slashhuang on 17/1/21.
 	 */
 
-	var PubSubHandler = function () {
-	    function PubSubHandler() {
-	        _classCallCheck(this, PubSubHandler);
+	var StateTracker = function () {
+	    function StateTracker() {
+	        _classCallCheck(this, StateTracker);
 
-	        this.eventPool = {};
-	    }
-	    //移除
+	        this.raw = {
+	            a: 1,
+	            b: 2
+	        };
+	    } // 混合模式方法入口
 
 
-	    _createClass(PubSubHandler, [{
-	        key: 'off',
-	        value: function off(topicName) {
-	            delete this.observers[topicName];
-	        }
-	        //发布
-
-	    }, {
-	        key: 'trigger',
-	        value: function trigger(topicName) {
-	            for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	                args[_key - 1] = arguments[_key];
-	            }
-
-	            this.eventPool[topicName] && this.eventPool[topicName].forEach(function (callback) {
-	                return callback.apply(undefined, args);
-	            });
-	        }
-	        //订阅
-
-	    }, {
-	        key: 'on',
-	        value: function on(topicName, callback) {
-	            var topic = this.eventPool[topicName];
-	            if (!topic) {
-	                this.eventPool[topicName] = [];
-	            }
-	            this.eventPool[topicName].push(callback);
+	    _createClass(StateTracker, [{
+	        key: 'mixin',
+	        value: function mixin(obj) {
+	            Object.assign(this.raw, obj);
 	        }
 	    }]);
 
-	    return PubSubHandler;
+	    return StateTracker;
 	}();
 
-	var test = new PubSubHandler();
-	test.on('hello', function (val) {
-	    console.log('pub-sub----', val);
+	var demo = new StateTracker();
+	demo.mixin({
+	    c: 20
 	});
-	test.trigger('hello', 20);
+	console.log('mixin---', demo);
 
 /***/ }
 /******/ ]);

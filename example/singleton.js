@@ -4,18 +4,19 @@
 
 var singleton = ()=>{
         var instance;
-        var createInstance = ()=>{
+        var createInstance = function(){
             this.a = 1;
             this.b = 2;
         }// 单例模式方法入口
         return {
             getInstance:()=>{
                 if(!instance){
-                    instance = createInstance();
+                    instance = new createInstance();
                 }
                 return instance;
             }
         }
     }
 var test = singleton();
-test.getInstance() == test.getInstance() //true
+var boolean = test.getInstance() == test.getInstance() //true
+console.log(boolean)

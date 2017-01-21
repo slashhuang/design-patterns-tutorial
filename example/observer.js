@@ -14,6 +14,16 @@ class StateTracker{
             this.observers.forEach(observer=>observer(val));
         }// 注册观察者
         registerObserver(ObserverFn){
-            this.obserers.push(ObserverFn)
+            this.observers.push(ObserverFn)
         }
 };
+
+var demo = new StateTracker();
+demo.registerObserver((val)=>{
+        console.log('observer 1 getting value',val)
+})
+demo.registerObserver((val)=>{
+        console.log('observer 2 getting value',val)
+})
+demo.change(20)
+demo.change(40)

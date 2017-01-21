@@ -23,4 +23,9 @@ class PubSubHandler{
             }
             this.eventPool[topicName].push(callback)
         }
-    }
+}
+var test = new PubSubHandler();
+test.on('hello',(val)=>{
+    console.log('pub-sub----',val)
+});
+test.trigger('hello',20)

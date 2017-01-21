@@ -15,3 +15,9 @@
             Object.assign(this.raw,obj)
         }
     }
+
+var demo = new StateTracker();
+demo.mixin({
+    c:20
+});
+console.log('mixin---',demo)    

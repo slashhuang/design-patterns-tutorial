@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "./dist";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -65,7 +65,7 @@
 
 
 	    _createClass(StateTracker, [{
-	        key: "change",
+	        key: 'change',
 	        value: function change(val) {
 	            this.internalState = val;
 	            this.observers.forEach(function (observer) {
@@ -74,9 +74,9 @@
 	        } // 注册观察者
 
 	    }, {
-	        key: "registerObserver",
+	        key: 'registerObserver',
 	        value: function registerObserver(ObserverFn) {
-	            this.obserers.push(ObserverFn);
+	            this.observers.push(ObserverFn);
 	        }
 	    }]);
 
@@ -84,6 +84,16 @@
 	}();
 
 	;
+
+	var demo = new StateTracker();
+	demo.registerObserver(function (val) {
+	    console.log('observer 1 getting value', val);
+	});
+	demo.registerObserver(function (val) {
+	    console.log('observer 2 getting value', val);
+	});
+	demo.change(20);
+	demo.change(40);
 
 /***/ }
 /******/ ]);

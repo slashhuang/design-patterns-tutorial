@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "./dist";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -53,20 +53,21 @@
 	var singleton = function singleton() {
 	    var instance;
 	    var createInstance = function createInstance() {
-	        undefined.a = 1;
-	        undefined.b = 2;
+	        this.a = 1;
+	        this.b = 2;
 	    }; // 单例模式方法入口
 	    return {
 	        getInstance: function getInstance() {
 	            if (!instance) {
-	                instance = createInstance();
+	                instance = new createInstance();
 	            }
 	            return instance;
 	        }
 	    };
 	};
 	var test = singleton();
-	test.getInstance() == test.getInstance(); //true
+	var boolean = test.getInstance() == test.getInstance(); //true
+	console.log(boolean);
 
 /***/ }
 /******/ ]);

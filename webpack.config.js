@@ -14,6 +14,7 @@ module.exports = {
          mixin:'./mixin.js'
     },
     output: {
+        publicPath:"./dist",
         path: './dist',
         filename: "[name].js"
     },

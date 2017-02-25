@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+		<style type="text/css">
+			.demo{
+				border:1px solid coral;
+				padding:30px;
+				margin:5px;
+			}
+		</style>
+		<script type="text/javascript">
+			var singleton = function(){
+		        var instance;
+		        var createInstance = function(){
+		            this.a = 1;
+		            this.b = 2;
+		        }// 单例模式方法入口
+		        // 不要把return obj 看成对象 ==》 看成访问闭包的接口
+		        return {
+		            getInstance:function(){
+		                if(!instance){
+		                    instance = new createInstance();
+		                }
+		                return instance;
+		            }
+		        }
+		    }
+		</script>	
+	</head>
+	<body>
+		<div>singleton设计模式</div>
+		<div class="demo decorator">
+			<div>singleton举例子</div>
+			<button id='s-b-1'>点击</button>
+			<div>
+				result is ---- <span id='s1'>0</span>
+			</div>
+			<script type="text/javascript">
+				var Factory = singleton()
+				var singleton_1 = Factory.getInstance();
+				$('#s-b-1').click(function(){
+					$('#s1').html(singleton_1.a);
+					singleton_1.a++
+				})
+			</script>
+			<button id='s-b-2'>点击</button>
+			<div>
+				result is ---- <span id='s2'>0</span>
+			</div>
+			<script type="text/javascript">
+				var singleton_2 = Factory.getInstance();
+				$('#s-b-2').click(function(){
+					$('#s2').html([
+						singleton_2.a ,
+						'第二个实例和第一个实例指向同一个引用这句话是',
+						singleton_2===singleton_1&&"正确的"
+						].join(''));
+					singleton_1.a++
+				})
+			</script>
+			
+		</div>
+	</body>
+</html>

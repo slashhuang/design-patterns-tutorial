@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+		<style type="text/css">
+			.demo{
+				border:1px solid coral;
+				padding:30px;
+				margin:5px;
+			}
+		</style>	
+		<script type="text/javascript">
+			//日志系统decorator
+			var decorator_log = function(fn) {
+				return function(){
+						var result = fn.apply(this,arguments);
+						console.log('日志系统，加法计算参数是-- ');
+						console.log(arguments[0]);
+						return result
+					}
+			}
+		</script>
+	</head>
+	<body>
+		<div>decorator设计模式</div>
+		<div class="demo decorator">
+			decorator举例子
+			<button id="d-btn">
+				点击从
+				<span>0</span>
+				开始进行加法计算
+			</button>
+			<div id="decorator">
+				result is ---- <span>0</span>
+			</div>
+			<script type="text/javascript">
+				//主功能
+				var Add = function(array,nextData){
+					return array.reduce(function(pre,cur){return pre+cur},0)
+				};
+				Add = decorator_log(Add)
+				var data=[1];
+				$('#d-btn').click(function(){
+					var nextData= data.length
+					data.push(nextData);
+					$('#decorator span').html(Add(data,nextData));
+					$('#d-btn span').html(nextData+1);
+				})
+			</script>
+		</div>
+	</body>
+</html>

@@ -3,9 +3,15 @@
 ### 使用
 
 
-```
-  $ cnpm install
-  $ cnpm install webpack -g
-  # 开始学习教程命令
-  $ npm run tutorial 
-```
+[decorator设计模式](./decorator.html)
+
+[observer设计模式](./observer.html)
+
+[pub-sub设计模式](./pub-sub.html)
+
+[singleton设计模式](./singleton.html)
+
+
+### Author
+
+[slashhuang](github.com/slashhuang)

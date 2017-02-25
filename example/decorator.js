@@ -60,5 +60,4 @@ TestFn_2(1,2,4,5)
 
 
 // @decorator
-// d;
 // react + redux 经验 react-redux connect[典型的decorator] 

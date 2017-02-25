@@ -3,32 +3,24 @@
  */
 
 
-class StateTracker{
-        constructor(){
-            this.observers = [];
-            this.internalState= 10;
-        }
-        // 改变内部状态，触发状态的观察者列表
-        change(val){
-            this.internalState= val;
-            this.observers.forEach(observer=>observer(val));
-        }
-        // 注册观察者,提供一个接口将回调函数推送进  观察者队列 observers
-        registerObserver(ObserverFn){
-            this.observers.push(ObserverFn)
-        }
+/*
+ * 和pub/sub模式采用topic来进行执行通知比较起来，
+ * observer模式更多的安排在事件改变上
+ */
+
+var Observer = function() {
+   this.observers = [];
+   this.internalState= 10;
 };
-/* {
-observers:[],
-internalState:10
-}
-__proto__ 
-      change
-      registerObserver
+Observer.prototype.registerObserver = function(ObserverFn) {
+   this.observers.push(ObserverFn)
+};
+Observer.prototype.change = function(val) {
+  this.internalState= val;
+  this.observers.forEach(observer=>observer(val));
+};
 
-*/
-var demo = new StateTracker();
-
+var demo = new Observer();
 
 demo.registerObserver((val)=>{
         console.log('observer 1 getting value',val)
@@ -36,26 +28,10 @@ demo.registerObserver((val)=>{
 demo.registerObserver((val)=>{
         console.log('observer 2 getting value',val)
 })
-/* {
-observers:[f1,f2],
-internalState:10
-}
-__proto__ 
-      change
-      registerObserver
 
-*/
-demo.change(20)
-/* {
-observers:[f1,f2],
-internalState:20
-}
-__proto__ 
-      change
-      registerObserver
+demo.change(21)
 
-*/
-demo.change(40)
+demo.change(42)
 
 
 

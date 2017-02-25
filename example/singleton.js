@@ -4,6 +4,7 @@
 /**
 1、构造函数的实例只有一个【目的】
 2、一般是通过闭包存储内部实例，通过接口访问内部实例。【实现方式】
+3、主要的好处在于节约内存
 */
 var singleton = ()=>{
         var instance;
@@ -13,7 +14,7 @@ var singleton = ()=>{
         }// 单例模式方法入口
         // 不要把return obj 看成对象 ==》 看成访问闭包的接口
         return {
-            getInstance:()=>{
+            getInstance:function(){
                 if(!instance){
                     instance = new createInstance();
                 }
@@ -21,7 +22,6 @@ var singleton = ()=>{
             }
         }
     }
-// modal dialog 组件层面
 
 var test = singleton();
 var boolean = test.getInstance() == test.getInstance() //true 指向同一个对象

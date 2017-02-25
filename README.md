@@ -12,6 +12,8 @@
 [singleton设计模式](./singleton.html)
 
 
-### Author
+### Author contact
 
-[slashhuang](github.com/slashhuang)
+[github](https://github.com/slashhuang)
+
+[zhihu](https://www.zhihu.com/people/huang-da-xian-14-14)

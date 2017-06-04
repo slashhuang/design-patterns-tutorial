@@ -18,18 +18,6 @@
 				result is ---- <span id='s1'>0</span>
 			</div>
 			<script type="text/javascript">
-				var Factory = singleton()
-				var singleton_1 = Factory.getInstance();
-				$('#s-b-1').click(function(){
-					$('#s1').html(singleton_1.a);
-					singleton_1.a++
-				})
-			</script>
-			<button id='s-b-2'>点击</button>
-			<div>
-				result is ---- <span id='s2'>0</span>
-			</div>
-			<script type="text/javascript">
 				var singleton = function(){
 					var instance;
 					var createInstance = function(){
@@ -46,6 +34,18 @@
 					}
 				}
 			</script>
+			<script type="text/javascript">
+				var Factory = singleton()
+				var singleton_1 = Factory.getInstance();
+				$('#s-b-1').click(function(){
+					$('#s1').html(singleton_1.a);
+					singleton_1.a++
+				})
+			</script>
+			<button id='s-b-2'>点击</button>
+			<div>
+				result is ---- <span id='s2'>0</span>
+			</div>
 			<script type="text/javascript">
 				var singleton_2 = Factory.getInstance();
 				$('#s-b-2').click(function(){

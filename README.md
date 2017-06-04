@@ -31,6 +31,31 @@
 [singleton设计模式](./singleton.html)
 
 
+## FAQ
+
+1. 观察者模式与发布订阅模式如何区分？
+
+observer vs pub/sub
+
+eg. $('input').change() 做三件事件
+
+-  pub/sub   ==> 是根据topic 比如click等来执行通知
+
+trigger('日志') trigger('发起请求) trigger(UI')
+
+-  observer  ==> 比如 redux.subscribe的api就是这样子
+不会对事情做区分
+['日志','发起请求','UI'].forEach(fn) 
+
+2. 单例模式应用场景
+
+dialog或者modal组件
+
+<button> =>  click  => 弹出modal、dialog  ==> 点击叉叉隐藏 
+<button> =>  click  => 弹出modal、dialog  ==> 点击叉叉隐藏
+
+
+
 ### Author contact
 
 [github](https://github.com/slashhuang)

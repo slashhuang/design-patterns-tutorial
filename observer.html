@@ -7,46 +7,60 @@
 				padding:30px;
 				margin:5px;
 			}
+			#ps-btn{
+				background: coral;
+				cursor: pointer
+			}
 		</style>
-		<script type="text/javascript">
-			var Observer = function(data) {
-			   this.observers = [];
-			   this.data = data;
-			};
-			Observer.prototype.registerObserver = function(ObserverFn) {
-			   this.observers.push(ObserverFn)
-			};
-		</script>	
 	</head>
 	<body>
 		<div>observer设计模式</div>
 
 		<div class="demo pub-sub">
 			observer订阅发布举例子
-			<button id="ps-btn">
-				点击从
+			<div id="ps-btn">
+				加上数据
 				<span>0</span>
-				开始进行加法计算
-			</button>
+			</div>
 			<div id="pub-sub">
-				result is ---- <span>0</span>
+				数据总和为 ---- <span>0</span>
 			</div>
 			<script type="text/javascript">
-				var observer = new Observer([0]);
-				observer.registerObserver(function(val){
-				     var value = observer.data.reduce(function(pre,cur){return pre+cur},0);
-				     $('#pub-sub span').html(value);
-				});
-				observer.registerObserver(function(val){
-				      $('#ps-btn span').html(val);
-				});
-				Observer.prototype.change = function(val) {
+				var Observerable = function() {
+					this.observers = [];
+					this.data = [];
+				};
+				Observerable.prototype.subscribe = function(ObserverFn) {
+					this.observers.push(ObserverFn)
+				};
+				Observerable.prototype.digest = function(ObserverFn) {
+					var data = this.data;
+					this.observers.forEach(function(observer){
+						observer(data);
+					});
+				};
+			</script>
+			<script type="text/javascript">
+				// 观察者模式 ==> 数据源一致 ==> 通知所有注册该数据源的回调处理
+				var observer1 = function(data) {
+				     var value = data.reduce(function(pre,cur){
+						 	return pre+cur
+						 },0);
+				     $('#pub-sub span').html('数据总和为' + value);
+				};
+				var observer2 = function(data){
+				      $('#ps-btn span').html(data[data.length - 1]);
+				};
+				var observerable_inst = new Observerable();
+				observerable_inst.subscribe(observer1);
+				observerable_inst.subscribe(observer2);
+				observerable_inst.change = function(val) {
 				  this.data.push(val);
-				  this.observers.forEach(function(observer){observer(val)});
+				  observerable_inst.digest();
 				};
 				$('#ps-btn').click(function(){
-					var data = observer.data;
-					observer.change(data.length)
+					var randomNum = Math.floor(Math.random() * 100);
+					observerable_inst.change(randomNum);
 				})
 			</script>
 		</div>

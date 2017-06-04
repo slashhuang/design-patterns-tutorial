@@ -15,6 +15,13 @@
 				PubSub.prototype.off = function(topicName){
 				    delete this.eventPool[topicName]
 				};
+				PubSub.prototype.on = function(topicName,callback){
+				    var  topic = this.eventPool[topicName] ; 
+				    if(!topic){
+				        this.eventPool[topicName] =[] 
+				    }
+				    this.eventPool[topicName].push(callback)
+				}
 				PubSub.prototype.trigger = function(){
 				    var _arg = [].slice.call(arguments);
 				    var topicName=_arg.shift();
@@ -26,13 +33,7 @@
 				         });
 				    }
 				};
-				PubSub.prototype.on = function(topicName,callback){
-				    var  topic = this.eventPool[topicName] ; 
-				    if(!topic){
-				        this.eventPool[topicName] =[] 
-				    }
-				    this.eventPool[topicName].push(callback)
-				}
+
 		</script>
 	</head>
 	<body>
@@ -45,21 +46,22 @@
 				开始进行加法计算
 			</button>
 			<div id="pub-sub">
-				result is ---- <span>0</span>
+				数据总和为 ---- <span>0</span>
 			</div>
 			<script type="text/javascript">
 				var pubSub = new PubSub();
-				pubSub.on('click',function(value,nextData){
-					$('#ps-btn span').html(nextData+1);
+				pubSub.on('click',function(data){
+					$('#ps-btn span').html(data[data.length - 1]);
 				});
-				pubSub.on('click',function(value){
+				pubSub.on('click',function(data){
+					var value = data.reduce(function(pre,cur){return pre+cur},0)
 					$('#pub-sub span').html(value);
 				});
-				var pub_data = [0];
+				var data = [0];
 				$('#ps-btn').click(function(){
-					pub_data.push(pub_data.length);
-					var value = pub_data.reduce(function(pre,cur){return pre+cur},0)
-					pubSub.trigger('click',value,pub_data.length);
+					var randomNum = Math.floor(Math.random() * 100);
+					data.push(randomNum);
+					pubSub.trigger('click',data);
 				})
 			</script>
 		</div>

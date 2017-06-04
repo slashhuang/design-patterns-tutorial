@@ -7,25 +7,7 @@
 				padding:30px;
 				margin:5px;
 			}
-		</style>
-		<script type="text/javascript">
-			var singleton = function(){
-		        var instance;
-		        var createInstance = function(){
-		            this.a = 1;
-		            this.b = 2;
-		        }// 单例模式方法入口
-		        // 不要把return obj 看成对象 ==》 看成访问闭包的接口
-		        return {
-		            getInstance:function(){
-		                if(!instance){
-		                    instance = new createInstance();
-		                }
-		                return instance;
-		            }
-		        }
-		    }
-		</script>	
+		</style>	
 	</head>
 	<body>
 		<div>singleton设计模式</div>
@@ -47,6 +29,23 @@
 			<div>
 				result is ---- <span id='s2'>0</span>
 			</div>
+			<script type="text/javascript">
+				var singleton = function(){
+					var instance;
+					var createInstance = function(){
+						this.a = 1;
+						this.b = 2;
+					};
+					return {
+						getInstance: function() {
+							if (!instance) {
+								instance = new createInstance();
+							}
+							return instance;
+						}
+					}
+				}
+			</script>
 			<script type="text/javascript">
 				var singleton_2 = Factory.getInstance();
 				$('#s-b-2').click(function(){

@@ -7,18 +7,7 @@
 				padding:30px;
 				margin:5px;
 			}
-		</style>	
-		<script type="text/javascript">
-			//日志系统decorator
-			var decorator_log = function(fn) {
-				return function(){
-						var result = fn.apply(this,arguments);
-						console.log('日志系统，加法计算参数是-- ');
-						console.log(arguments[0]);
-						return result
-					}
-			}
-		</script>
+		</style>
 	</head>
 	<body>
 		<div>decorator设计模式</div>
@@ -33,9 +22,22 @@
 				result is ---- <span>0</span>
 			</div>
 			<script type="text/javascript">
+				//日志系统decorator
+				var decorator_log = function(fn) {
+					return function(){
+							var result = fn.apply(this, arguments);
+							console.log('日志系统，加法计算参数是-- ');
+							console.log(arguments[0]);
+							return result
+						}
+				}
+			</script>
+			<script type="text/javascript">
 				//主功能
-				var Add = function(array,nextData){
-					return array.reduce(function(pre,cur){return pre+cur},0)
+				var Add = function(array) {
+					return array.reduce(function(pre,cur) { 
+						return pre+cur
+					},0)
 				};
 				Add = decorator_log(Add)
 				var data=[1];

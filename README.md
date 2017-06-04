@@ -33,9 +33,9 @@
 
 ## FAQ
 
-1. 观察者模式与发布订阅模式如何区分？
+#### 1. 观察者模式与发布订阅模式如何区分？
 
-observer vs pub/sub
+##### observer vs pub/sub
 
 eg. $('input').change() 做三件事件
 
@@ -47,12 +47,15 @@ trigger('日志') trigger('发起请求) trigger(UI')
 不会对事情做区分
 ['日志','发起请求','UI'].forEach(fn) 
 
-2. 单例模式应用场景
+#### 2. 单例模式应用场景
 
 dialog或者modal组件
 
-<button> =>  click  => 弹出modal、dialog  ==> 点击叉叉隐藏 
-<button> =>  click  => 弹出modal、dialog  ==> 点击叉叉隐藏
+```js
+	<button> =>  click  => 弹出modal、dialog  ==> 点击叉叉隐藏 
+	<button> =>  click  => 弹出modal、dialog  ==> 点击叉叉隐藏
+
+```
 
 
 
